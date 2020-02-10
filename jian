@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<string.h>
+#include<iostream>
+#include<algorithm>
+using namespace std;
+const int n=1e6+5;
+char str[n];
+int s[n],top;
+bool check(int t)
+{
+   if(top==0)return 0;
+   if(s[top]==t)
+   {
+      top--;
+      return 1;
+   }
+   else{
+        return 0;//return(s[top--]==t);
+    }
+}
+int main()
+{
+  scanf("%s",str+1);
+  int len=strlen(str+1);
+  for(int i=1;i<=len;++i)
+  {
+   bool ans=1;
+   if(str[i]=='(')s[++top]=1;
+   else if(str[i]=='[')s[++top]=2;
+   else if(str[i]=='{')s[++top]=3;
+   else if(str[i]==')')check(1);
+   else if(str[i]==']')check(2);
+   else if(str[i]=='}')check(3);
+   if(ans==0)
+   {
+      puts("jiu nmb");
+      return 0;
+   }
+  }
+   if(top!=0)
+      {
+        puts("???");
+        return 0;
+      }
+    puts("done');
+}
